@@ -191,3 +191,7 @@
   ex = Example("객체1")
   del ex  # __del__ 자동 호출
   ```
+
+## Overriding vs Overloading
+- Overriding
+  - 

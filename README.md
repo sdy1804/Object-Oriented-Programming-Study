@@ -61,3 +61,47 @@
   - 본질: 구체적 실체
   - 역할: 정의된 속성과 행동을 사용
   - 메모리 존재여부: 메모리에 생성되어 존재
+
+## 객체지향 프로그래밍의 핵심 4대 개념
+1. 캡슐화 (Encapsulation)
+  - 정의: 외부에서 직접 접근하지 못하게 보호하는 것
+  - Public
+    - 어디서나 접근 가능
+    - ex) name
+  
+  - Protected
+    - 외부접근이 가능하지만 내부 전용임을 약속
+    - 내부 및 상속받은 클래스 내에서만 접근 권장
+    - ex) _name
+  
+  - Private
+    - 클래스 내부에서만 접근 가능
+    - 외부와 상속 클래스 접근 불가
+    - ex) __name
+  ```
+  # 캡슐화 예시
+  class Account:
+      def __init__(self, owner, balance):
+          self.owner = owner          # Public
+          self._interest_rate = 0.03  # Protected
+          self.__balance = balance    # Private
+
+      def deposit(self, amount):
+          if amount > 0:
+            self.__balance += amount
+
+      def __calculate_interest(self):  # Private method
+          return self.__balance * self._interest_rate
+
+      def get_balance(self):
+          return self.__balance
+
+acc = Account("홍길동", 1000)
+print(acc.get_balance())  # 접근 가능
+#print(acc.__balance)     # 접근 불가
+```
+2. 상속
+   
+3. 추상화
+   
+4. 다형성

@@ -64,44 +64,110 @@
 
 ## 객체지향 프로그래밍의 핵심 4대 개념
 1. 캡슐화 (Encapsulation)
-  - 정의: 외부에서 직접 접근하지 못하게 보호하는 것
-  - Public
-    - 어디서나 접근 가능
-    - ex) name
+    - 정의: 외부에서 직접 접근하지 못하게 보호하는 것
+    - Public
+      - 어디서나 접근 가능
+      - ex) name
+    
+    - Protected
+      - 외부접근이 가능하지만 내부 전용임을 약속
+      - 내부 및 상속받은 클래스 내에서만 접근 권장
+      - ex) _name
+    
+    - Private
+      - 클래스 내부에서만 접근 가능
+      - 외부와 상속 클래스 접근 불가
+      - ex) __name
+    ```
+    # 캡슐화 예시
+    
+    class Account:
+        def __init__(self, owner, balance):
+            self.owner = owner          # Public
+            self._interest_rate = 0.03  # Protected
+            self.__balance = balance    # Private
   
-  - Protected
-    - 외부접근이 가능하지만 내부 전용임을 약속
-    - 내부 및 상속받은 클래스 내에서만 접근 권장
-    - ex) _name
+        def deposit(self, amount):
+            if amount > 0:
+              self.__balance += amount
   
-  - Private
-    - 클래스 내부에서만 접근 가능
-    - 외부와 상속 클래스 접근 불가
-    - ex) __name
-  ```
-  # 캡슐화 예시
-  class Account:
-      def __init__(self, owner, balance):
-          self.owner = owner          # Public
-          self._interest_rate = 0.03  # Protected
-          self.__balance = balance    # Private
+        def __calculate_interest(self):  # Private method
+            return self.__balance * self._interest_rate
+  
+        def get_balance(self):
+            return self.__balance
+  
+    acc = Account("홍길동", 1000)
+    print(acc.get_balance())  # 접근 가능
+    #print(acc.__balance)     # 접근 불가
+    ```
+2. 상속 (Inheritance)
+   - 정의: 기존 클래스(부모, Super class)의 속성과 메소드를 자식(Sub class) 클래스가 물려받는 것
+   - 코드 재사용성, 확장성. 자식 클래스에서 재정의(override) 가능
+   - super()를 통해 부모 클래스의 메소드를 호출
 
-      def deposit(self, amount):
-          if amount > 0:
-            self.__balance += amount
-
-      def __calculate_interest(self):  # Private method
-          return self.__balance * self._interest_rate
-
-      def get_balance(self):
-          return self.__balance
-
-acc = Account("홍길동", 1000)
-print(acc.get_balance())  # 접근 가능
-#print(acc.__balance)     # 접근 불가
-```
-2. 상속
+   ```
+   # 상속 예시
    
-3. 추상화
-   
-4. 다형성
+   class Animal:
+       def __init__(self, name):
+           self.name = name
+
+       def speak(self):
+           print("소리를 냅니다.")
+
+   class Dog(Animal):
+       def speak(self):  # Overriding
+           print(f"{self.name}가 짖습니다!")
+
+   dog = Dog("바둑이")
+   dog.speak()  # 바둑이가 짖습니다!
+
+   class Puppy(Dog):
+       def __init__(self, name, age):
+           super().__init__(name)  # 부모 생성자 호출
+           self.age = age
+   ```
+  
+3. 추상화 (Abstraction)
+   - 정의: 핵심적인 부분만 구현, 자주 바뀌는 부분은 비워둠(추상화)
+   - 상속을 통해 하위 클래스에서 구체화(override)
+   ```
+   from abc import ABC, abstractmethod
+
+   class Animal(ABC):
+       @abstractmethod
+       def speak(self):
+           pass  # 추상 메소드
+
+    class Dog(Animal):
+         def speak(self):
+             print("멍멍!")
+   ```
+   - ABC (Abstract Base Class): 추상 클래스 선언용
+   - @abstractmethod: 하위 클래스에서 반드시 구현
+  
+4. 다형성 (Polymorphism)
+   - 정의: 같은 이름의 메소드라도 객체에 따라 다르게 동작하는 것
+   - 여러 클래스가 동일한 메소드 이름을 사용해도 각 클래스마다 다른 동작 수행
+   - 코드의 유연성, 확장성
+   ```
+   class Cat:
+       def speak(self):
+           print("야옹!")
+
+   class Dog:
+       def speak(self):
+           print("멍멍!")
+
+   def animal_sound(animal):
+       animal.speak()
+
+   cat = Cat()
+   dog = Dog()
+
+   animal_sound(cat)  # 야옹!
+   animal_sound(dog)  # 멍멍!
+   ```
+
+## 특수 메소드 (Magic / Dunder Method)

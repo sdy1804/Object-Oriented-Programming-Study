@@ -173,11 +173,11 @@
 ## 특수 메소드 (Magic / Dunder Method)
   - 정의: 객체의 생성과 소멸, 연산자 동작, 출력 형식 등을 커스터마이징
   - 메소드 종류
-    - __init__(self): 인스턴스가 생성될 때 자동 호출되는 생성자(Constructor)
-    - __del__(self): 인스턴스가 메모리에서 제거될 때 호출되는 소멸자(destructor)
-    - __str__(self): print()로 객체를 출력할 때 호출
-    - __add__(self, other): + 연산자 오버로딩
-    - __len__(self): len() 호출 시 동작
+    - ```__init__(self)```: 인스턴스가 생성될 때 자동 호출되는 생성자(Constructor)
+    - ```__del__(self)```: 인스턴스가 메모리에서 제거될 때 호출되는 소멸자(destructor)
+    - ```__str__(self)```: print()로 객체를 출력할 때 호출
+    - ```__add__(self, other)```: + 연산자 오버로딩
+    - ```__len__(self)```: len() 호출 시 동작
 
   ```
   class Example:

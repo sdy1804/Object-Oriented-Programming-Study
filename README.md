@@ -16,13 +16,13 @@
   def print_result(result):
       print(f"결과: {result}")
   
-  num = input_number()  # 데이터 (data)
+  num = input_number()  # 데이터 (Data)
   result = square(num)  # 함수에 전달
   print_result(result)
   ```
 - 객체지향 - 누가 뭘 할지 (메소드 나열)
   - 프로그램을 객체들의 상호작용으로 구성
-  - 각 객체는 속성(attribute)과 행동(method)을 가짐
+  - 각 객체는 속성(Attribute)과 행동(Method)을 가짐
   - Attribute: 객체가 가지고 있는 속성, 데이터
   - Method: 객체가 할 수 있는 행동, 기능
   
@@ -31,9 +31,9 @@
   
   class Calculator:
       def __init__(self, number):
-          self.number = number  # 속성 (attribute)
+          self.number = number  # 속성 (Attribute)
 
-      def square(self):         # 메소드 (method)
+      def square(self):         # 메소드 (Method)
           return self.number * self.number
 
   calc = Calculator(5)
@@ -103,7 +103,7 @@
     ```
 2. 상속 (Inheritance)
    - 정의: 기존 클래스(부모, Super class)의 속성과 메소드를 자식(Sub class) 클래스가 물려받는 것
-   - 코드 재사용성, 확장성. 자식 클래스에서 재정의(override) 가능
+   - 코드 재사용성, 확장성. 자식 클래스에서 재정의(Override) 가능
    - super()를 통해 부모 클래스의 메소드를 호출
 
    ```
@@ -131,7 +131,7 @@
   
 3. 추상화 (Abstraction)
    - 정의: 핵심적인 부분만 구현, 자주 바뀌는 부분은 비워둠(추상화)
-   - 상속을 통해 하위 클래스에서 구체화(override)
+   - 상속을 통해 하위 클래스에서 구체화(Override)
    ```
    from abc import ABC, abstractmethod
 
@@ -174,7 +174,7 @@
   - 정의: 객체의 생성과 소멸, 연산자 동작, 출력 형식 등을 커스터마이징
   - 메소드 종류
     - ```__init__(self)```: 인스턴스가 생성될 때 자동 호출되는 생성자(Constructor)
-    - ```__del__(self)```: 인스턴스가 메모리에서 제거될 때 호출되는 소멸자(destructor)
+    - ```__del__(self)```: 인스턴스가 메모리에서 제거될 때 호출되는 소멸자(Destructor)
     - ```__str__(self)```: print()로 객체를 출력할 때 호출
     - ```__add__(self, other)```: + 연산자 오버로딩
     - ```__len__(self)```: len() 호출 시 동작

@@ -194,4 +194,51 @@
 
 ## Overriding vs Overloading
 - Overriding
-  - 
+  - 상속관계에서 부모 클래스의 메소드를 자식 클래스가 재정의하는 것
+  - 같은 이름, 같은 인자, 같은 반환 타입으로 다시 정의
+
+- Overloading
+  - 같은 클래스 내에서 같은 이름의 메소드를 여러 버전으로 정의하는 것
+  - 호출 시 전달되는 인자의 갯수나 타입에 따라 서로 다른 메소드가 실행됨
+  - Python은 메소드 오버로딩을 직접 지원하지 않음
+    ```
+    # 파이썬에서 지원하지 않는 예시
+
+    class Example:
+        def add(self, a, b):
+            return a + b
+
+        def add(self, a, b, c):  # 이전 메소드를 덮어쓰게 됨
+            return a + b + c
+
+    ex = Example()
+    print(ex.add(1, 2))  # 오류 발생 (2개 인자를 받는 메소드가 삭제)
+    ```
+    ```
+    # 파이썬 대안 예시
+
+    class Calculator:
+        def add(self, *args):
+          return sum(args)
+
+    calc = Calculator()
+    print(calc.add(1, 2))        # 3
+    print(calc.add(1, 2, 3, 4))  # 10
+    ```
+  - 주의점
+    - *args 방식은 모든 입력을 한 메소드에서 처리하므로 완전한 오버로딩이 아님
+    - 가독성이나 작성에 좋지 않을 수 있음
+   
+## Abstract class vs Interface
+- Abstract class
+  - 여러 클래스에서 공통적으로 사용하는 속성과 일부 구현된 메소드를 포함한 클래스
+  - 생성자(Constructor)와 멤버 변수(Attribute)를 가질 수 있음
+  - 'is-a' 관계를 표현
+ 
+- Interface
+  - 클래스가 반드시 구현해야 하는 메소드의 명세만 정의하는 구조
+  - 메소드 시그니처만 존재, 구현 내용은 없음
+  - 상수만 정의 가능, 변수는 포함하지 않음
+  - 클래스는 인터페이스를 구현해야 하며 명시된 모든 메소드를 반드시 정의해야 함
+  - 'can-do' 관계를 표현
+  - 파이썬에는 명시적인 Interface가 없지만 ABC와 @abstractmethod를 사용해 인터페이스 동작 구현 가능
